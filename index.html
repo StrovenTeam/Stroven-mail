@@ -581,7 +581,7 @@
             padding: 16px 24px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             background: var(--white);
         }
@@ -589,6 +589,7 @@
         .mail-viewer-actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .action-btn {
@@ -676,6 +677,27 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
+        }
+
+        /* Roven AI Translation Box */
+        .roven-box {
+            margin-top: 20px;
+            border-top: 2px solid var(--primary-color);
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .roven-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .roven-box p {
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-size: 14px;
         }
 
         /* Auth Pages */
@@ -849,6 +871,11 @@
         .compose-header h3 {
             font-size: 14px;
             font-weight: 600;
+        }
+
+        .compose-actions {
+            display: flex;
+            gap: 8px;
         }
 
         .compose-actions button {
@@ -1046,6 +1073,23 @@
             animation: fadeIn 0.3s ease-out;
         }
 
+        .notification.error {
+            background: var(--accent-color);
+        }
+
+        /* Offline Indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+        }
+
         /* Admin Panel */
         .admin-panel {
             display: none;
@@ -1058,6 +1102,7 @@
             z-index: 2000;
             flex-direction: column;
             padding: 20px;
+            overflow: hidden;
         }
 
         .admin-panel.active {
@@ -1071,6 +1116,14 @@
             margin-bottom: 24px;
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .admin-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .admin-stats {
@@ -1078,6 +1131,7 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 16px;
             margin-bottom: 24px;
+            flex-shrink: 0;
         }
 
         .stat-card {
@@ -1086,6 +1140,12 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
             text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .stat-number {
@@ -1098,10 +1158,37 @@
             display: flex;
             gap: 12px;
             margin-bottom: 24px;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .keys-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .keys-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .keys-list {
             flex: 1;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--white);
+        }
+
+        .keys-list-container {
+            padding: 16px;
+            max-height: 400px;
             overflow-y: auto;
         }
 
@@ -1114,11 +1201,85 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s;
+        }
+
+        .key-card:hover {
+            background: #f8f9fa;
+            border-color: var(--primary-color);
+        }
+
+        .key-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .key-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .key-value {
+            font-weight: 600;
+            color: var(--dark-text);
+            font-size: 16px;
+            margin-bottom: 4px;
+            word-break: break-all;
+        }
+
+        .key-details {
+            font-size: 14px;
+            color: var(--light-text);
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .key-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .key-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .key-status.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .key-status.inactive {
+            background: var(--light-text);
+            color: white;
         }
 
         .key-actions {
             display: flex;
             gap: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Custom Scrollbar */
+        .keys-list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .keys-list-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .keys-list-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .keys-list-container::-webkit-scrollbar-thumb:hover {
+            background: #3367d6;
         }
 
         /* Animations */
@@ -1171,6 +1332,24 @@
             .mail-viewer {
                 width: 100%;
             }
+            .mail-viewer-actions {
+                gap: 4px;
+            }
+            .action-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .admin-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .key-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .key-actions {
+                align-self: flex-end;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1193,6 +1372,14 @@
             .mail-viewer-content {
                 padding: 16px;
             }
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+            .admin-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -1204,6 +1391,9 @@
 
     <!-- Notification -->
     <div class="notification" id="notification"></div>
+
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offline-indicator">You are offline</div>
 
     <!-- Auth Pages -->
     <div class="auth-page active" id="login-page">
@@ -1274,33 +1464,46 @@
             <button class="auth-btn" id="close-admin">Close Admin</button>
         </div>
         
-        <div class="admin-stats">
-            <div class="stat-card">
-                <div class="stat-number" id="total-keys">0</div>
-                <div>Total Keys</div>
+        <div class="admin-content">
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-keys">0</div>
+                    <div>Total Keys</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="active-keys">0</div>
+                    <div>Active Keys</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-users">0</div>
+                    <div>Registered Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-emails">0</div>
+                    <div>Total Emails</div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="active-keys">0</div>
-                <div>Active Keys</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-users">0</div>
-                <div>Registered Users</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="total-emails">0</div>
-                <div>Total Emails</div>
-            </div>
-        </div>
 
-        <div class="admin-actions">
-            <button class="auth-btn" id="generate-key-btn">Generate New Key</button>
-            <button class="auth-btn" id="export-data-btn">Export All Data</button>
-            <button class="auth-btn" id="import-data-btn">Import Data</button>
-        </div>
+            <div class="admin-actions">
+                <button class="auth-btn" id="generate-key-btn">Generate New Key</button>
+                <button class="auth-btn" id="export-data-btn">Export All Data</button>
+                <button class="auth-btn" id="import-data-btn">Import Data</button>
+            </div>
 
-        <div class="keys-list" id="keys-list">
-            <!-- Keys will be populated here -->
+            <div class="keys-section">
+                <div class="keys-section-header">
+                    <h3>Manage Keys</h3>
+                    <div class="admin-search">
+                        <input type="text" id="admin-search-input" placeholder="Search keys...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="keys-list">
+                    <div class="keys-list-container" id="keys-list">
+                        <!-- Keys will be populated here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1421,13 +1624,17 @@
                         <i class="fas fa-share"></i>
                         Forward
                     </button>
+                    <button class="action-btn" id="translate-mail-btn">
+                        <i class="fas fa-language"></i>
+                        Translate with Roven
+                    </button>
                     <button class="action-btn" id="delete-mail-btn">
                         <i class="fas fa-trash"></i>
                         Delete
                     </button>
                     <button class="action-btn" id="mark-unread-btn">
                         <i class="fas fa-envelope"></i>
-                        Mark Unread
+                        Unread
                     </button>
                 </div>
             </div>
@@ -1477,6 +1684,10 @@
                     <i class="fas fa-paperclip"></i>
                     Attach File
                 </button>
+                <button class="attachment-btn" id="roven-write-btn">
+                    <i class="fas fa-robot"></i>
+                    Ask Roven to Write
+                </button>
                 <button class="compose-send-btn" id="send-email">Send</button>
             </div>
         </div>
@@ -1519,6 +1730,7 @@
         const adminPanel = document.getElementById('admin-panel');
         const mailViewer = document.getElementById('mail-viewer');
         const mailViewerContent = document.getElementById('mail-viewer-content');
+        const offlineIndicator = document.getElementById('offline-indicator');
         
         // Auth elements
         const loginKeyInput = document.getElementById('login-key');
@@ -1570,6 +1782,10 @@
         const forwardBtn = document.getElementById('forward-btn');
         const deleteMailBtn = document.getElementById('delete-mail-btn');
         const markUnreadBtn = document.getElementById('mark-unread-btn');
+        const translateMailBtn = document.getElementById('translate-mail-btn');
+
+        // AI Roven elements
+        const rovenWriteBtn = document.getElementById('roven-write-btn');
 
         // Admin panel elements
         const closeAdminBtn = document.getElementById('close-admin');
@@ -1582,6 +1798,7 @@
         const totalUsersElem = document.getElementById('total-users');
         const totalEmailsElem = document.getElementById('total-emails');
         const backupFileInput = document.getElementById('backup-file-input');
+        const adminSearchInput = document.getElementById('admin-search-input');
 
         // Global variables
         let currentUser = null;
@@ -1593,6 +1810,257 @@
         let draftTimer = null;
         let currentDraft = null;
         let isDarkMode = localStorage.getItem('darkMode') === 'true';
+
+        // 🔧 FIXED: AI Roven Integration
+        async function rovenAsk(promptText) {
+            const API_KEY = "AIzaSyAQZsmbEE_BXQsY2o7tzp38nqze6zAI6eI";
+            const MODEL = "gemini-2.0-flash";
+            const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+            
+            try {
+                showLoading();
+                const res = await fetch(ENDPOINT, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `You are Roven, Stroven Mail's AI assistant. Always start replies with "Roven:". Be helpful and concise. ${promptText}`
+                            }]
+                        }]
+                    })
+                });
+                
+                const data = await res.json();
+                let out = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Roven: I'm unable to respond at the moment.";
+                hideLoading();
+                return out;
+            } catch (e) {
+                hideLoading();
+                return "Roven: Error - " + e.message;
+            }
+        }
+
+        // 🔧 FIXED: Enhanced Stroven Login with Firebase Verification
+        async function strovenLogin() {
+            const enteredKey = loginKeyInput.value.trim();
+            const enteredPin = loginPinInput.value.trim();
+            
+            if (!enteredKey || !enteredPin) {
+                showNotification("Enter key & PIN", "error");
+                return;
+            }
+
+            // Clear error messages
+            document.getElementById('login-error').style.display = 'none';
+            document.getElementById('pin-error').style.display = 'none';
+
+            // Check online status
+            if (!navigator.onLine) {
+                showNotification("You are offline. Check connection.", "error");
+                return;
+            }
+
+            try {
+                showLoading();
+                const snap = await database.ref("keys/" + enteredKey).once("value");
+                
+                if (!snap.exists()) {
+                    hideLoading();
+                    document.getElementById('login-error').style.display = 'block';
+                    showNotification("Invalid Key", "error");
+                    return;
+                }
+
+                const keyData = snap.val();
+
+                if (keyData.isActive === false) {
+                    hideLoading();
+                    showNotification("This key is deactivated", "error");
+                    return;
+                }
+
+                // 🔧 FIXED: Proper PIN comparison
+                if (String(keyData.pin) !== String(enteredPin)) {
+                    hideLoading();
+                    document.getElementById('pin-error').style.display = 'block';
+                    showNotification("Wrong PIN", "error");
+                    return;
+                }
+
+                // Login successful
+                localStorage.setItem("strovenUser", JSON.stringify(keyData));
+                localStorage.setItem("strovenKey", enteredKey);
+                openMailbox(keyData, enteredKey);
+                
+            } catch (e) {
+                hideLoading();
+                showNotification("Network error, please try again", "error");
+                console.error(e);
+            }
+        }
+
+        // 🔧 FIXED: Auto Login & Logout
+        async function autoLogin() {
+            const cachedKey = localStorage.getItem("strovenKey");
+            const cachedUser = localStorage.getItem("strovenUser");
+            
+            if (!cachedKey || !cachedUser) return;
+
+            try {
+                if (!navigator.onLine) {
+                    showNotification("You are offline. Some features may not work.", "error");
+                    // Still allow offline access with cached data
+                    const userData = JSON.parse(cachedUser);
+                    openMailbox(userData, cachedKey);
+                    return;
+                }
+
+                const snap = await database.ref("keys/" + cachedKey).once("value");
+                if (snap.exists() && snap.val().isActive !== false) {
+                    const user = snap.val();
+                    openMailbox(user, cachedKey);
+                } else {
+                    localStorage.clear();
+                    showNotification("Session expired. Please login again.", "error");
+                }
+            } catch (e) {
+                console.error("Auto login error:", e);
+                // Fallback to cached data
+                const userData = JSON.parse(cachedUser);
+                openMailbox(userData, cachedKey);
+                showNotification("Using cached data. Some features limited.", "error");
+            }
+        }
+
+        // 🔧 FIXED: Stroven Logout
+        function strovenLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem("strovenUser");
+                localStorage.removeItem("strovenKey");
+                window.location.reload();
+            }
+        }
+
+        // 🔧 FIXED: Display User Info
+        function displayUserInfo() {
+            const data = JSON.parse(localStorage.getItem("strovenUser") || "{}");
+            if (data.name) {
+                userName.textContent = data.name;
+                userEmail.textContent = data.email || currentUser?.email || "user@stroven.stvn";
+                userAvatar.textContent = data.name.charAt(0).toUpperCase();
+            }
+        }
+
+        // 🔧 FIXED: Check Key Validity for Account Creation
+        async function checkKeyValidity(key) {
+            try {
+                document.getElementById('key-loading').style.display = 'block';
+                document.getElementById('key-error').style.display = 'none';
+                
+                const snap = await database.ref("keys/" + key).once("value");
+                
+                if (!snap.exists()) {
+                    document.getElementById('key-error').style.display = 'block';
+                    document.getElementById('key-loading').style.display = 'none';
+                    return false;
+                }
+                
+                const keyData = snap.val();
+                
+                if (keyData.isActive === false) {
+                    document.getElementById('key-error').textContent = "This key is deactivated";
+                    document.getElementById('key-error').style.display = 'block';
+                    document.getElementById('key-loading').style.display = 'none';
+                    return false;
+                }
+                
+                // Show key details
+                keyNameDisplay.textContent = keyData.name || "Unknown";
+                keyEmailDisplay.textContent = keyData.email || "Unknown";
+                keyDetails.style.display = 'block';
+                document.getElementById('key-loading').style.display = 'none';
+                
+                return true;
+            } catch (error) {
+                document.getElementById('key-error').textContent = "Error checking key";
+                document.getElementById('key-error').style.display = 'block';
+                document.getElementById('key-loading').style.display = 'none';
+                return false;
+            }
+        }
+
+        // 🔧 FIXED: Create Account Function
+        async function createStrovenAccount() {
+            const key = accountKeyInput.value.trim();
+            const accountName = accountNameInput.value.trim();
+            const pin = accountPinInput.value.trim();
+            
+            // Validation
+            if (!key || !accountName || !pin) {
+                showNotification("Please fill all fields", "error");
+                return;
+            }
+            
+            if (pin.length !== 4 || !/^\d+$/.test(pin)) {
+                document.getElementById('pin-set-error').style.display = 'block';
+                showNotification("PIN must be 4 digits", "error");
+                return;
+            }
+            
+            if (!accountName.endsWith('.Stvn')) {
+                document.getElementById('name-error').style.display = 'block';
+                showNotification("Account name must end with .Stvn", "error");
+                return;
+            }
+            
+            // Check if key is valid
+            const isValidKey = await checkKeyValidity(key);
+            if (!isValidKey) {
+                showNotification("Invalid key", "error");
+                return;
+            }
+            
+            try {
+                showLoading();
+                
+                // Update the key with account information
+                await database.ref("keys/" + key).update({
+                    accountName: accountName,
+                    pin: pin,
+                    isActive: true,
+                    lastLogin: new Date().toISOString()
+                });
+                
+                // Create local account
+                accounts[accountName] = {
+                    key: key,
+                    name: accountName.split('.')[0],
+                    email: accountName,
+                    pin: pin,
+                    createdAt: new Date().toISOString()
+                };
+                
+                localStorage.setItem('strovenAccounts', JSON.stringify(accounts));
+                
+                // Add to all users
+                allUsers[accountName] = {
+                    name: accountName.split('.')[0],
+                    email: accountName,
+                    isOnline: true
+                };
+                
+                localStorage.setItem('allStrovenUsers', JSON.stringify(allUsers));
+                
+                hideLoading();
+                showNotification('Account created successfully!');
+                showPage(loginPage);
+                
+            } catch (error) {
+                hideLoading();
+                showNotification('Error creating account: ' + error.message, 'error');
+            }
+        }
 
         // Initialize theme
         function initTheme() {
@@ -1625,27 +2093,39 @@
         // Show notification
         function showNotification(message, type = 'success') {
             notification.textContent = message;
-            notification.style.background = type === 'error' ? 'var(--accent-color)' : 'var(--secondary-color)';
+            notification.className = type === 'error' ? 'notification error' : 'notification';
             notification.style.display = 'block';
-            
-            // Play sound for new mail
-            if (type === 'success' && message.includes('New email')) {
-                playNotificationSound();
-            }
             
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 3000);
         }
 
-        // Play notification sound
-        function playNotificationSound() {
-            try {
-                const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
-                audio.play();
-            } catch (e) {
-                console.log('Notification sound not supported');
-            }
+        // Open mailbox after successful login
+        function openMailbox(userData, key) {
+            currentUser = {
+                key: key,
+                name: userData.name,
+                email: userData.email || userData.accountName,
+                pin: loginPinInput.value
+            };
+            
+            // Update UI
+            displayUserInfo();
+            
+            // Show app
+            loginPage.classList.remove('active');
+            appContainer.style.display = 'flex';
+            
+            // Load mails
+            loadMails();
+            showNotification('Login successful!');
+            
+            // Setup auto-save for drafts
+            setupDraftAutoSave();
+            
+            // Setup real-time mail listener
+            setupRealTimeMailListener();
         }
 
         // Request browser notification permission
@@ -1813,67 +2293,6 @@
             updateAttachmentsList();
         }
 
-        // Validate Stroven Key with better error handling
-        async function validateStrovenKey(key) {
-            if (!key || !key.startsWith('STR-')) {
-                return null;
-            }
-
-            try {
-                showLoading();
-                // First check localStorage
-                const userKeys = JSON.parse(localStorage.getItem('userKeys')) || [];
-                const localKeyData = userKeys.find(k => k.key === key && k.isActive !== false);
-                
-                if (localKeyData) {
-                    hideLoading();
-                    return localKeyData;
-                }
-
-                // Then check Firebase with timeout
-                const timeoutPromise = new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('Timeout')), 10000)
-                );
-
-                const snapshotPromise = database.ref('keys/' + key).once('value');
-                const snapshot = await Promise.race([snapshotPromise, timeoutPromise]);
-                const firebaseKeyData = snapshot.val();
-
-                if (firebaseKeyData && firebaseKeyData.isActive !== false) {
-                    // Save to localStorage for future use
-                    saveKeyToLocalStorage(firebaseKeyData);
-                    hideLoading();
-                    return firebaseKeyData;
-                }
-
-                hideLoading();
-                return null;
-            } catch (error) {
-                console.error('Key validation error:', error);
-                hideLoading();
-                return null;
-            }
-        }
-
-        // Save key to localStorage
-        function saveKeyToLocalStorage(keyData) {
-            let keys = JSON.parse(localStorage.getItem('userKeys')) || [];
-            const existingKeyIndex = keys.findIndex(k => k.key === keyData.key);
-            
-            if (existingKeyIndex !== -1) {
-                keys[existingKeyIndex] = keyData;
-            } else {
-                keys.push(keyData);
-            }
-            
-            localStorage.setItem('userKeys', JSON.stringify(keys));
-        }
-
-        // Validate account name
-        function validateAccountName(name) {
-            return name.endsWith('.Stvn') && name.length > 6 && !accounts[name];
-        }
-
         // Search real users
         function searchUsers(query) {
             if (query.length < 3) {
@@ -1881,10 +2300,9 @@
                 return;
             }
             
-            const results = Object.keys(accounts).filter(email => 
+            const results = Object.keys(allUsers).filter(email => 
                 email.toLowerCase().includes(query.toLowerCase()) && 
-                email !== currentUser.email &&
-                email.endsWith('.Stvn')
+                email !== currentUser?.email
             );
             
             displaySearchResults(results);
@@ -1901,16 +2319,17 @@
             }
             
             results.forEach(email => {
+                const user = allUsers[email];
                 const resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
                 resultItem.innerHTML = `
                     <div class="search-result-avatar">
                         ${email.charAt(0).toUpperCase()}
-                        <div class="user-status ${isUserOnline(email) ? '' : 'offline'}"></div>
+                        <div class="user-status ${user.isOnline ? '' : 'offline'}"></div>
                     </div>
                     <div>
                         <div style="font-weight: 600;">${email}</div>
-                        <div style="font-size: 12px; color: var(--light-text);">${accounts[email].name}</div>
+                        <div style="font-size: 12px; color: var(--light-text);">${user.name}</div>
                     </div>
                 `;
                 resultItem.addEventListener('click', () => {
@@ -1923,160 +2342,6 @@
             });
             
             searchResults.style.display = 'block';
-        }
-
-        // Check if user is online
-        function isUserOnline(email) {
-            // In a real app, this would check Firebase presence system
-            // For demo, return random status
-            return Math.random() > 0.3;
-        }
-
-        // Show key details when key is entered
-        accountKeyInput.addEventListener('input', async function() {
-            const key = this.value.trim();
-            
-            document.getElementById('key-error').style.display = 'none';
-            document.getElementById('key-loading').style.display = 'block';
-            keyDetails.style.display = 'none';
-
-            if (key.length === 19 && key.startsWith('STR-')) { // STR-XXXX-XXXX-XXXX format
-                const keyData = await validateStrovenKey(key);
-                
-                if (keyData) {
-                    keyDetails.style.display = 'block';
-                    keyNameDisplay.textContent = keyData.name;
-                    keyEmailDisplay.textContent = keyData.email;
-                } else {
-                    document.getElementById('key-error').style.display = 'block';
-                }
-            }
-            
-            document.getElementById('key-loading').style.display = 'none';
-        });
-
-        // Create account
-        async function createAccount(key, accountName, pin) {
-            document.getElementById('key-error').style.display = 'none';
-            document.getElementById('name-error').style.display = 'none';
-            document.getElementById('pin-set-error').style.display = 'none';
-
-            if (!pin || pin.length !== 4) {
-                document.getElementById('pin-set-error').style.display = 'block';
-                return false;
-            }
-
-            const keyData = await validateStrovenKey(key);
-            if (!keyData) {
-                document.getElementById('key-error').style.display = 'block';
-                return false;
-            }
-            
-            if (!validateAccountName(accountName)) {
-                document.getElementById('name-error').style.display = 'block';
-                return false;
-            }
-            
-            // Create account with PIN
-            accounts[accountName] = {
-                key: key,
-                name: keyData.name,
-                originalEmail: keyData.email,
-                pin: pin,
-                createdAt: new Date().toISOString(),
-                email: accountName,
-                isVerified: false
-            };
-
-            // Add to all users list
-            allUsers[accountName] = {
-                name: keyData.name,
-                email: accountName,
-                createdAt: new Date().toISOString(),
-                isOnline: true
-            };
-            
-            // Save to localStorage
-            localStorage.setItem('strovenAccounts', JSON.stringify(accounts));
-            localStorage.setItem('allStrovenUsers', JSON.stringify(allUsers));
-            
-            // Save to Firebase for global user discovery
-            await database.ref('strovenUsers/' + accountName).set(allUsers[accountName]);
-            
-            // Send verification email
-            await sendVerificationEmail(accountName);
-            
-            // Login the user
-            loginToAccount(key, pin);
-            showNotification('Account created successfully! Verification email sent.');
-            return true;
-        }
-
-        // Send verification email
-        async function sendVerificationEmail(email) {
-            const verificationMail = {
-                id: Date.now().toString(),
-                from: 'verify@stroven.stvn',
-                to: email,
-                subject: 'Verify Your Stroven Mail Account',
-                preview: 'Click to verify your Stroven Mail account',
-                body: `Please click the following link to verify your account: https://stroven.mail/verify/${email}`,
-                timestamp: new Date().toISOString(),
-                read: false
-            };
-
-            if (!mails[email]) {
-                mails[email] = [];
-            }
-            mails[email].push(verificationMail);
-            localStorage.setItem('strovenMails', JSON.stringify(mails));
-        }
-
-        // Login to account with PIN
-        async function loginToAccount(key, pin) {
-            document.getElementById('login-error').style.display = 'none';
-            document.getElementById('pin-error').style.display = 'none';
-            document.getElementById('login-loading').style.display = 'block';
-
-            try {
-                const account = Object.values(accounts).find(acc => acc.key === key);
-                
-                if (account) {
-                    if (account.pin !== pin) {
-                        document.getElementById('pin-error').style.display = 'block';
-                        return;
-                    }
-                    
-                    currentUser = account;
-                    currentUser.email = Object.keys(accounts).find(email => accounts[email].key === key);
-                    
-                    // Update UI
-                    userAvatar.textContent = currentUser.email.charAt(0).toUpperCase();
-                    userName.textContent = currentUser.name;
-                    userEmail.textContent = currentUser.email;
-                    
-                    // Save last user
-                    localStorage.setItem('lastStrovenUser', JSON.stringify({key: key, pin: pin}));
-                    
-                    // Show app
-                    loginPage.classList.remove('active');
-                    appContainer.style.display = 'flex';
-                    
-                    // Load mails
-                    loadMails();
-                    showNotification('Login successful!');
-                    
-                    // Setup auto-save for drafts
-                    setupDraftAutoSave();
-                } else {
-                    document.getElementById('login-error').style.display = 'block';
-                }
-            } catch (error) {
-                document.getElementById('login-error').style.display = 'block';
-                document.getElementById('login-error').textContent = 'Login failed. Please try again.';
-            } finally {
-                document.getElementById('login-loading').style.display = 'none';
-            }
         }
 
         // Load mails for current user
@@ -2504,10 +2769,21 @@
                 const keyCard = document.createElement('div');
                 keyCard.className = 'key-card';
                 keyCard.innerHTML = `
-                    <div>
-                        <div style="font-weight: 600;">${key.key}</div>
-                        <div style="font-size: 14px; color: var(--light-text);">
-                            ${key.name} • ${key.email} • ${new Date(key.createdAt).toLocaleDateString()}
+                    <div class="key-info">
+                        <div class="key-value">${key.key}</div>
+                        <div class="key-details">
+                            <span class="key-detail-item">
+                                <i class="fas fa-user"></i> ${key.name}
+                            </span>
+                            <span class="key-detail-item">
+                                <i class="fas fa-envelope"></i> ${key.email}
+                            </span>
+                            <span class="key-detail-item">
+                                <i class="fas fa-calendar"></i> ${new Date(key.createdAt).toLocaleDateString()}
+                            </span>
+                            <span class="key-status ${key.isActive === false ? 'inactive' : 'active'}">
+                                ${key.isActive === false ? 'Inactive' : 'Active'}
+                            </span>
                         </div>
                     </div>
                     <div class="key-actions">
@@ -2601,25 +2877,82 @@
             backupFileInput.click();
         }
 
-        // Event Listeners
-        performLoginBtn.addEventListener('click', async () => {
-            const key = loginKeyInput.value.trim();
-            const pin = loginPinInput.value.trim();
-            
-            if (key && pin) {
-                await loginToAccount(key, pin);
-            } else {
-                if (!key) document.getElementById('login-error').style.display = 'block';
-                if (!pin) document.getElementById('pin-error').style.display = 'block';
-            }
-        });
+        // Real-time mail listener
+        function setupRealTimeMailListener() {
+            database.ref('mails').on('child_added', (snapshot) => {
+                const mail = snapshot.val();
+                if (mail.to === currentUser.email) {
+                    // Add to local storage
+                    if (!mails[currentUser.email]) {
+                        mails[currentUser.email] = [];
+                    }
+                    
+                    // Check if mail already exists
+                    const mailExists = mails[currentUser.email].some(m => m.id === mail.id);
+                    if (!mailExists) {
+                        mails[currentUser.email].push(mail);
+                        localStorage.setItem('strovenMails', JSON.stringify(mails));
+                        
+                        // Reload mails if we're on inbox
+                        const activeFolder = document.querySelector('.nav-item.active').dataset.folder;
+                        if (activeFolder === 'inbox') {
+                            loadMails();
+                        }
+                        
+                        // Show notification
+                        let attachmentMsg = mail.attachments ? ` with ${mail.attachments.length} attachment(s)` : '';
+                        showNotification(`New email from ${mail.from}${attachmentMsg}`);
+                        
+                        // Show browser notification
+                        showBrowserNotification('New Email', `From: ${mail.from}\nSubject: ${mail.subject}`);
+                    }
+                }
+            });
+        }
 
-        createAccountBtn.addEventListener('click', async () => {
-            const key = accountKeyInput.value.trim();
-            const accountName = accountNameInput.value.trim();
-            const pin = accountPinInput.value.trim();
+        // Check online status
+        function checkOnlineStatus() {
+            if (!navigator.onLine) {
+                offlineIndicator.style.display = 'block';
+                return false;
+            } else {
+                offlineIndicator.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Translate with Roven
+        async function translateWithRoven() {
+            if (!currentMail) return;
             
-            await createAccount(key, accountName, pin);
+            const lang = prompt("Translate to which language? (e.g., Hindi, Spanish, French)");
+            if (!lang) return;
+
+            const out = await rovenAsk(`Translate this mail into ${lang}: ${currentMail.body}`);
+            mailViewerContent.insertAdjacentHTML("beforeend",
+                `<div class='roven-box'><h4>${lang} Translation by Roven</h4><p>${out}</p></div>`);
+        }
+
+        // Ask Roven to Write
+        async function askRovenToWrite() {
+            const topic = prompt("Mail kis topic pe likhna hai? Describe your email purpose:");
+            if (!topic) return;
+            
+            const mailText = await rovenAsk(`Write a professional email about: ${topic}. Include appropriate subject line and professional formatting.`);
+            document.getElementById("compose-message").value = mailText;
+        }
+
+        // Event Listeners
+        performLoginBtn.addEventListener('click', strovenLogin);
+
+        createAccountBtn.addEventListener('click', createStrovenAccount);
+
+        // Check key validity when typing
+        accountKeyInput.addEventListener('blur', () => {
+            const key = accountKeyInput.value.trim();
+            if (key) {
+                checkKeyValidity(key);
+            }
         });
 
         showCreateAccountBtn.addEventListener('click', (e) => {
@@ -2689,14 +3022,7 @@
         });
 
         // Logout
-        logoutBtn.addEventListener('click', () => {
-            currentUser = null;
-            appContainer.style.display = 'none';
-            showPage(loginPage);
-            localStorage.removeItem('lastStrovenUser');
-            showNotification('Logged out successfully');
-            accountMenu.classList.remove('active');
-        });
+        logoutBtn.addEventListener('click', strovenLogout);
 
         // Compose email
         composeBtn.addEventListener('click', () => {
@@ -2723,6 +3049,10 @@
         forwardBtn.addEventListener('click', forwardMail);
         deleteMailBtn.addEventListener('click', deleteMail);
         markUnreadBtn.addEventListener('click', markMailUnread);
+        translateMailBtn.addEventListener('click', translateWithRoven);
+
+        // AI Roven events
+        rovenWriteBtn.addEventListener('click', askRovenToWrite);
 
         // Admin panel events
         closeAdminBtn.addEventListener('click', closeAdminPanel);
@@ -2744,38 +3074,22 @@
             });
         });
 
-        // Real-time mail listener
-        function setupRealTimeMailListener() {
-            database.ref('mails').on('child_added', (snapshot) => {
-                const mail = snapshot.val();
-                if (mail.to === currentUser.email) {
-                    // Add to local storage
-                    if (!mails[currentUser.email]) {
-                        mails[currentUser.email] = [];
-                    }
-                    
-                    // Check if mail already exists
-                    const mailExists = mails[currentUser.email].some(m => m.id === mail.id);
-                    if (!mailExists) {
-                        mails[currentUser.email].push(mail);
-                        localStorage.setItem('strovenMails', JSON.stringify(mails));
-                        
-                        // Reload mails if we're on inbox
-                        const activeFolder = document.querySelector('.nav-item.active').dataset.folder;
-                        if (activeFolder === 'inbox') {
-                            loadMails();
-                        }
-                        
-                        // Show notification
-                        let attachmentMsg = mail.attachments ? ` with ${mail.attachments.length} attachment(s)` : '';
-                        showNotification(`New email from ${mail.from}${attachmentMsg}`);
-                        
-                        // Show browser notification
-                        showBrowserNotification('New Email', `From: ${mail.from}\nSubject: ${mail.subject}`);
-                    }
-                }
-            });
-        }
+        // Online/offline event listeners
+        window.addEventListener('online', () => {
+            checkOnlineStatus();
+            showNotification('Connection restored');
+        });
+
+        window.addEventListener('offline', () => {
+            checkOnlineStatus();
+            showNotification('You are now offline', 'error');
+        });
+
+        // Global error handler
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.message);
+            showNotification('Unexpected error occurred. Please check your connection.', 'error');
+        });
 
         // Initialize the app
         function initApp() {
@@ -2785,36 +3099,15 @@
             // Request notification permission
             requestNotificationPermission();
             
-            // Check if user is already logged in
-            const lastUser = localStorage.getItem('lastStrovenUser');
-            if (lastUser) {
-                try {
-                    const userData = JSON.parse(lastUser);
-                    loginKeyInput.value = userData.key;
-                    loginPinInput.value = userData.pin;
-                    // Auto-login would happen here in a real app
-                } catch (e) {
-                    console.log('No saved login found');
-                }
-            }
-
-            // Load all users from Firebase
-            database.ref('strovenUsers').once('value').then((snapshot) => {
-                const firebaseUsers = snapshot.val() || {};
-                allUsers = { ...allUsers, ...firebaseUsers };
-                localStorage.setItem('allStrovenUsers', JSON.stringify(allUsers));
-            });
+            // Check online status
+            checkOnlineStatus();
+            
+            // Auto login if possible
+            autoLogin();
         }
 
         // Start the app
         initApp();
-
-        // Setup real-time listener when user logs in
-        setTimeout(() => {
-            if (currentUser) {
-                setupRealTimeMailListener();
-            }
-        }, 1000);
 
         // Make functions global for onclick handlers
         window.downloadAttachment = downloadAttachment;
